@@ -4,7 +4,7 @@
 - Я решил объединить задания 1 и 3 в один стэк и попробовать выполнить все используя используя Ansible.
   Машины разверну в virtual box используя vagrant. Можно было бы сделать все это в yzndex cloud и через Terraform, но, считаю, что пока это весьма тернистый путь и давайте исходить из текущих задач.
 
-  - Vagrantfile простой. Развернем две машины на Debian10:
+- Vagrantfile простой. Развернем две машины на Debian10:
  
   ```
   config.vm.define "vita1" do |vita1|
@@ -29,6 +29,7 @@ config.vm.network "public_network", bridge: "Intel(R) Dual Band Wireless-AC 8260
     vb.cpus = "2"
   end
 end
+
 ```
 
 На первой будет хост Ансибла, на вторую будем накатывать инфраструктуру.
