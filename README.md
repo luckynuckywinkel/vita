@@ -6,7 +6,7 @@
 
 - Vagrantfile простой. Развернем две машины на Debian10:
  
-  ```
+   ```
    config.vm.define "vita1" do |vita1|
     vita1.vm.hostname = "vita1"
     vita1.vm.box = "generic/debian10"
@@ -27,8 +27,7 @@
     vb.cpus = "2"
    end
  end
-
-```
+ ```
 
 На первой будет хост Ансибла, на вторую будем накатывать инфраструктуру.
 
