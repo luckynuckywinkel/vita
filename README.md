@@ -12,8 +12,7 @@
 config.vm.define "vita1" do |vita1|
     vita1.vm.hostname = "vita1"
     vita1.vm.box = "generic/debian10"
-    vita1.vm.network "public_network" 
-    config.vm.network "public_network", bridge: "Intel(R) Dual Band Wireless-AC 8260"
+    vita1.vm.network "public_network", bridge: "Intel(R) Dual Band Wireless-AC 8260"
     config.vm.provider "virtualbox" do |vb|
     vb.memory = "1024"
     vb.cpus = "1"
@@ -24,8 +23,7 @@ end
 config.vm.define "vita2" do |vita2|
     vita2.vm.hostname = "vita2"
     vita2.vm.box = "generic/debian11"
-    vita2.vm.network "public_network"
-config.vm.network "public_network", bridge: "Intel(R) Dual Band Wireless-AC 8260"
+    vita2.vm.network "public_network", bridge: "Intel(R) Dual Band Wireless-AC 8260"
     config.vm.provider "virtualbox" do |vb|
     vb.memory = "2048"
     vb.cpus = "2"
