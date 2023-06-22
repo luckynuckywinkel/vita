@@ -1,0 +1,85 @@
+---
+
+  # Создаем условную рабочую директорию:
+
+    - name: Create parent directory
+      file:
+        path: /home/vagrant/workdir
+        state: directory
+
+    # Создаем поддиректории используя модуль loop:
+    - name: Create subdirectories
+      file:
+        path: "{{ item }}"
+        state: directory
+      loop:
+        - /home/vagrant/workdir/codes
+        - /home/vagrant/workdir/tests
+        - /home/vagrant/workdir/prod
+
+# Раз уж мы используем роли, мы можем добавить несколько файлов в созданные директории следующим образом:
+
+    - name: Put random bash-scripts1 to codes directory
+      template:
+        src: /home/vagrant/vita_proj/roles/vita_copy/templates/random_bash_script.j2
+        dest: /home/vagrant/workdir/codes/script1.sh
+
+    - name: Put random bash-scripts2 to codes directory
+      template:
+        src: /home/vagrant/vita_proj/roles/vita_copy/templates/random_bash_script2.j2
+        dest: /home/vagrant/workdir/codes/script2.sh
+
+# Я создал пустые файлы и одну не пустую директорию, копируем используя copy
+
+    - name: Copy directory using copy module
+      synchronize:
+        src: /home/vagrant/vita_proj/roles/vita_copy/random_files/randomdir
+        dest: /home/vagrant/workdir/tests
+        recursive: yes
+
+    - name: Copy files using copy module
+      copy:
+        src: /home/vagrant/vita_proj/roles/vita_copy/random_files/{{ item }}
+        dest: /home/vagrant/workdir/prod
+      loop:
+        - randomfile1
+        - randomfile2
+        - randomfile3
+        - randomfile4
+
+#Проверим, что там у нас создалось прямо здесь же на хостовой машине:
+
+    - name: Check created folders and files
+      command: ls "{{item}}"
+      register: result
+      ignore_errors: true
+      loop:
+        - /home/vagrant/workdir
+        - /home/vagrant/workdir/codes
+        - /home/vagrant/workdir/tests
+        - /home/vagrant/workdir/prod
+
+    - name: Out_files
+      debug:
+        msg: "####Созданные файлы и каталоги####"  
+          
+            - name: Out_result
+      debug:
+        var: result
+
+    - name: Check content
+      command: cat "{{item}}"
+      register: resultcode
+      ignore_errors: true
+      loop:
+        - /home/vagrant/workdir/codes/script.sh
+        - /home/vagrant/workdir/codes/script2.sh
+
+    - name: Out_code
+      debug:
+        msg: "####Содержимое файлов со скриптами####"
+
+    - name: Out_code_result
+      debug:
+        var: resultcode
+
