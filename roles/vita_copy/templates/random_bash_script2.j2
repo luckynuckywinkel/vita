@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo -n "Let's play a game: Pick a number between 0 and 32767: "
+read a
+if (( RANDOM == a )); then
+   echo AMAZING, your answer is correct
+else
+   echo Sorry, that was wrong
+fi
