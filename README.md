@@ -34,7 +34,7 @@ end
 
 На первой машине развернем Ansible, на второй будем разворачивать необходимую по условию инфраструктуру.  
 
-- Запишем адрес необходоимой машины в inventory, создадим и прокинем ssh-ключ (ssh-copy-id -i vkey.pub userid@ip) и попробуем проверить соединение. И вот, о чем я и говорил:
+- Запишем адрес необходоимой машины в inventory, создадим и прокинем ssh-ключ (*ssh-copy-id -i vkey.pub userid@ip*) и попробуем проверить соединение. И вот, о чем я и говорил:
 
 ![false](img/false.JPG)  
 
@@ -105,8 +105,8 @@ ok: [10.22.97.60] => {
                     "ls",
                     "/home/vagrant/workdir"
                 ],
-                "delta": "0:00:00.004061",
-                "end": "2023-06-22 11:11:42.871792",
+                "delta": "0:00:01.006068",
+                "end": "2023-06-22 11:29:24.814663",
                 "failed": false,
                 "invocation": {
                     "module_args": {
@@ -123,7 +123,7 @@ ok: [10.22.97.60] => {
                 },
                 "item": "/home/vagrant/workdir",
                 "rc": 0,
-                "start": "2023-06-22 11:11:42.867731",
+                "start": "2023-06-22 11:29:23.808595",
                 "stderr": "",
                 "stderr_lines": [],
                 "stdout": "codes\nprod\ntests",
@@ -144,8 +144,8 @@ ok: [10.22.97.60] => {
                     "ls",
                     "/home/vagrant/workdir/codes"
                 ],
-                "delta": "0:00:00.003712",
-                "end": "2023-06-22 11:11:43.230083",
+                "delta": "0:00:00.003848",
+                "end": "2023-06-22 11:29:25.175921",
                 "failed": false,
                 "invocation": {
                     "module_args": {
@@ -162,7 +162,7 @@ ok: [10.22.97.60] => {
                 },
                 "item": "/home/vagrant/workdir/codes",
                 "rc": 0,
-                "start": "2023-06-22 11:11:43.226371",
+                "start": "2023-06-22 11:29:25.172073",
                 "stderr": "",
                 "stderr_lines": [],
                 "stdout": "script1.sh\nscript2.sh",
@@ -182,8 +182,8 @@ ok: [10.22.97.60] => {
                     "ls",
                     "/home/vagrant/workdir/tests"
                 ],
-                "delta": "0:00:00.004163",
-                "end": "2023-06-22 11:11:43.588699",
+                "delta": "0:00:00.004912",
+                "end": "2023-06-22 11:29:25.520529",
                 "failed": false,
                 "invocation": {
                     "module_args": {
@@ -200,7 +200,7 @@ ok: [10.22.97.60] => {
                 },
                 "item": "/home/vagrant/workdir/tests",
                 "rc": 0,
-                "start": "2023-06-22 11:11:43.584536",
+                "start": "2023-06-22 11:29:25.515617",
                 "stderr": "",
                 "stderr_lines": [],
                 "stdout": "randomdir",
@@ -219,8 +219,8 @@ ok: [10.22.97.60] => {
                     "ls",
                     "/home/vagrant/workdir/prod"
                 ],
-                "delta": "0:00:00.003878",
-                "end": "2023-06-22 11:11:43.927786",
+                "delta": "0:00:00.003558",
+                "end": "2023-06-22 11:29:25.859104",
                 "failed": false,
                 "invocation": {
                     "module_args": {
@@ -237,7 +237,7 @@ ok: [10.22.97.60] => {
                 },
                 "item": "/home/vagrant/workdir/prod",
                 "rc": 0,
-                "start": "2023-06-22 11:11:43.923908",
+                "start": "2023-06-22 11:29:25.855546",
                 "stderr": "",
                 "stderr_lines": [],
                 "stdout": "randomfile1\nrandomfile2\nrandomfile3\nrandomfile4",
@@ -253,9 +253,8 @@ ok: [10.22.97.60] => {
 }
 
 TASK [vita_copy : Check content] ************************************************************************************************************************************************************************************************************
-failed: [10.22.97.60] (item=/home/vagrant/workdir/codes/script.sh) => {"changed": true, "cmd": ["cat", "/home/vagrant/workdir/codes/script.sh"], "delta": "0:00:00.003303", "end": "2023-06-22 11:11:44.468166", "item": "/home/vagrant/workdir/codes/script.sh", "msg": "non-zero return code", "rc": 1, "start": "2023-06-22 11:11:44.464863", "stderr": "cat: /home/vagrant/workdir/codes/script.sh: No such file or directory", "stderr_lines": ["cat: /home/vagrant/workdir/codes/script.sh: No such file or directory"], "stdout": "", "stdout_lines": []}
+changed: [10.22.97.60] => (item=/home/vagrant/workdir/codes/script1.sh)
 changed: [10.22.97.60] => (item=/home/vagrant/workdir/codes/script2.sh)
-...ignoring
 
 TASK [vita_copy : Out_code] *****************************************************************************************************************************************************************************************************************
 ok: [10.22.97.60] => {
@@ -266,25 +265,25 @@ TASK [vita_copy : Out_code_result] *********************************************
 ok: [10.22.97.60] => {
     "resultcode": {
         "changed": true,
-        "failed": true,
         "msg": "All items completed",
         "results": [
             {
-                "_ansible_item_label": "/home/vagrant/workdir/codes/script.sh",
+                "_ansible_ignore_errors": true,
+                "_ansible_item_label": "/home/vagrant/workdir/codes/script1.sh",
                 "_ansible_item_result": true,
                 "_ansible_no_log": false,
                 "_ansible_parsed": true,
                 "changed": true,
                 "cmd": [
                     "cat",
-                    "/home/vagrant/workdir/codes/script.sh"
+                    "/home/vagrant/workdir/codes/script1.sh"
                 ],
-                "delta": "0:00:00.003303",
-                "end": "2023-06-22 11:11:44.468166",
-                "failed": true,
+                "delta": "0:00:00.004077",
+                "end": "2023-06-22 11:29:26.434841",
+                "failed": false,
                 "invocation": {
                     "module_args": {
-                        "_raw_params": "cat \"/home/vagrant/workdir/codes/script.sh\"",
+                        "_raw_params": "cat \"/home/vagrant/workdir/codes/script1.sh\"",
                         "_uses_shell": false,
                         "argv": null,
                         "chdir": null,
@@ -295,16 +294,42 @@ ok: [10.22.97.60] => {
                         "warn": true
                     }
                 },
-                "item": "/home/vagrant/workdir/codes/script.sh",
-                "msg": "non-zero return code",
-                "rc": 1,
-                "start": "2023-06-22 11:11:44.464863",
-                "stderr": "cat: /home/vagrant/workdir/codes/script.sh: No such file or directory",
-                "stderr_lines": [
-                    "cat: /home/vagrant/workdir/codes/script.sh: No such file or directory"
-                ],
-                "stdout": "",
-                "stdout_lines": []
+                "item": "/home/vagrant/workdir/codes/script1.sh",
+                "rc": 0,
+                "start": "2023-06-22 11:29:26.430764",
+                "stderr": "",
+                "stderr_lines": [],
+                "stdout": "#!/bin/bash\n# Generate a randomly based range defined by the user\n\n#Take the lower and the upper value from the user\necho \"Enter the minimum value:\"\nread minimum\necho \"Enter the maximum value:\"\nread maximum\n\n#Check the taken values are valid\nif [[ $maximum < $minimum ]]; then\n    echo \"Maximum value can't be lower than minimum value\"\n    exit 1\nfi\n\n#Find out the difference between the numbers\ndiff=$(($maximum-$minimum))\n\n#Check the difference value\nif [[ $diff == 1 ]]; then\n    echo \"The range of numbers must be more than 1\"\n    exit 1\nfi\n\n#Generate the random number\nrandomNumber=$(($minimum + $RANDOM % $maximum))\n#Print the generated number\necho \"The generated random number is: $randomNumber\"",
+                "stdout_lines": [
+                    "#!/bin/bash",
+                    "# Generate a randomly based range defined by the user",
+                    "",
+                    "#Take the lower and the upper value from the user",
+                    "echo \"Enter the minimum value:\"",
+                    "read minimum",
+                    "echo \"Enter the maximum value:\"",
+                    "read maximum",
+                    "",
+                    "#Check the taken values are valid",
+                    "if [[ $maximum < $minimum ]]; then",
+                    "    echo \"Maximum value can't be lower than minimum value\"",
+                    "    exit 1",
+                    "fi",
+                    "",
+                    "#Find out the difference between the numbers",
+                    "diff=$(($maximum-$minimum))",
+                    "",
+                    "#Check the difference value",
+                    "if [[ $diff == 1 ]]; then",
+                    "    echo \"The range of numbers must be more than 1\"",
+                    "    exit 1",
+                    "fi",
+                    "",
+                    "#Generate the random number",
+                    "randomNumber=$(($minimum + $RANDOM % $maximum))",
+                    "#Print the generated number",
+                    "echo \"The generated random number is: $randomNumber\""
+                ]
             },
             {
                 "_ansible_ignore_errors": true,
@@ -317,8 +342,8 @@ ok: [10.22.97.60] => {
                     "cat",
                     "/home/vagrant/workdir/codes/script2.sh"
                 ],
-                "delta": "0:00:00.004973",
-                "end": "2023-06-22 11:11:44.815882",
+                "delta": "0:00:00.003282",
+                "end": "2023-06-22 11:29:26.807814",
                 "failed": false,
                 "invocation": {
                     "module_args": {
@@ -335,7 +360,7 @@ ok: [10.22.97.60] => {
                 },
                 "item": "/home/vagrant/workdir/codes/script2.sh",
                 "rc": 0,
-                "start": "2023-06-22 11:11:44.810909",
+                "start": "2023-06-22 11:29:26.804532",
                 "stderr": "",
                 "stderr_lines": [],
                 "stdout": "#!/bin/bash\n\necho -n \"Let's play a game: Pick a number between 0 and 32767: \"\nread a\nif (( RANDOM == a )); then\n   echo AMAZING, your answer is correct\nelse\n   echo Sorry, that was wrong\nfi",
@@ -361,6 +386,9 @@ PLAY RECAP *********************************************************************
 root@vita1:/home/vagrant/vita_proj#
 ```
 
+### Комментарии  
+
+- Что я могу сказать. Т.к. структуру папок до этого ансиблом я не раскидывал - гуглить пришлось много. Модуль copy, оказывается не знает параметр recusrsive и я долго разбирался, чем заменить. В итоге, заменил на synchronize. Далее, я захотел добавить красоты и вывести все, что создалось и содержимое файлов в терминал
 
 
 
