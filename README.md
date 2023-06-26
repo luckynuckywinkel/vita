@@ -467,7 +467,10 @@ networks:
 
 
 
-![vita3_docker_ps](img/docker_ps.JPG)    
+![vita3_docker_ps](img/docker_ps.JPG)      
+
+
+![nginx](img/nginx.JPG)   
  
 
 
