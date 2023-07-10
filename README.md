@@ -547,17 +547,26 @@ echo "Время работы скрипта: $total сек."
 root@vita3:/home/vagrant# sh script.sh > result
 root@vita3:/home/vagrant# cat result
 0
-Время работы скрипта: 0 секунд.
+Время работы скрипта: 0 сек.
 ```
 
 
-Ни находит ни одной строчки (*так, ребята, кажется, нашел косяк в скрипте, вечером доберусь до компа и проверю. Вероятно, не ищет, потому что я не экоанировал точку*). Если заменить php7.4 просто на php - находит аж 6:  
+Ни находит ни одной строчки (*так, ребята, кажется, нашел косяк в скрипте, вечером доберусь до компа и проверю. Вероятно, не ищет, потому что я не экоанировал точку*). Если заменить php7.4 просто на php - находиv строки:  
 
 ```
+root@vita3:/home/vagrant# sh script.sh > result
 root@vita3:/home/vagrant# cat result
-6
-Время работы скрипта: 0 секунд.
-root@vita3:/home/vagrant#
+/var/log/kern.log:Jul 10 07:03:25 vita3 kernel: [    0.691056] acpiphp: ACPI Hot Plug PCI Controller Driver version: 0.5
+/var/log/messages:Jul 10 07:03:25 vita3 kernel: [    0.691056] acpiphp: ACPI Hot Plug PCI Controller Driver version: 0.5
+/var/log/kern.log.1:Feb 15 03:54:15 debian kernel: [    0.465104] acpiphp: ACPI Hot Plug PCI Controller Driver version: 0.5
+/var/log/kern.log.1:Jun 22 19:23:08 debian10 kernel: [    1.055344] acpiphp: ACPI Hot Plug PCI Controller Driver version: 0.5
+/var/log/kern.log.1:Jul  4 12:07:51 vita3 kernel: [    0.625623] acpiphp: ACPI Hot Plug PCI Controller Driver version: 0.5
+/var/log/syslog.1:Jul 10 07:03:25 vita3 kernel: [    0.691056] acpiphp: ACPI Hot Plug PCI Controller Driver version: 0.5
+/var/log/messages.1:Feb 15 03:54:15 debian kernel: [    0.465104] acpiphp: ACPI Hot Plug PCI Controller Driver version: 0.5
+/var/log/messages.1:Jun 22 19:23:08 debian10 kernel: [    1.055344] acpiphp: ACPI Hot Plug PCI Controller Driver version: 0.5
+/var/log/messages.1:Jul  4 12:07:51 vita3 kernel: [    0.625623] acpiphp: ACPI Hot Plug PCI Controller Driver version: 0.5
+Время работы скрипта: 0 сек.
+
 ```
 
 Прошу написать, если нужны какие-то дополнения, комментарии и прочее.  
